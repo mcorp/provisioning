@@ -1,0 +1,4 @@
+# file: production
+
+[vps]
+vps.marcocarvalho.com ansible_ssh_user=root

@@ -1,0 +1,11 @@
+---
+- name: Install common
+  hosts: vps
+  sudo: yes
+
+  vars:
+    remote_user: 
+
+  roles:
+    - common
+    # - nginx

@@ -1,0 +1,29 @@
+---
+
+- name: Update all packages
+  apt: update_cache=yes upgrade=dist
+
+- name: Install common Ubuntu Packages
+  apt: "pkg={{item}} state=latest force=yes"
+  with_items:
+    - build-essential
+    - openssl
+    - libreadline6
+    - libreadline6-dev
+    - zlib1g
+    - zlib1g-dev
+    - libssl-dev
+    - libyaml-dev
+    - libsqlite3-0
+    - libsqlite3-dev
+    - sqlite3
+    - libxml2-dev
+    - libxslt1-dev
+    - autoconf
+    - libc6-dev
+    - libncurses5-dev
+    - automake
+    - libtool
+    - bison
+    - git
+    - libffi-dev

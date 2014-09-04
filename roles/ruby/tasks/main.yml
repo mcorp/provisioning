@@ -1,0 +1,14 @@
+---
+
+- name: Download ruby
+  get_url: url=$ruby_url dest=/tmp/ruby-{{ ruby_version }}.tar.gz
+
+- name: Extract ruby
+  command: tar -zxf /tmp/ruby-$ruby_version.tar.gz creates=/tmp/ruby-{{ ruby_version }}
+
+- name: Make, configure, and install ruby
+  command: $item chdir=/tmp/ruby-$ruby_version
+  with_items:
+    - ./configure
+    - make
+    - sudo make install

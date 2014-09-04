@@ -1,0 +1,4 @@
+---
+ruby_major_version: '2.1'
+ruby_version: '2.1.2'
+ruby_url: 'http://cache.ruby-lang.org/pub/ruby/{{ ruby_major_version }}/ruby-{{ ruby_version }}.tar.gz'

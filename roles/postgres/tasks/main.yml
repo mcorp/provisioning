@@ -1,5 +1,5 @@
 ---
-  name: "Install Postgres"
+- name: "Install Postgres"
   apt: "pkg={{ item }} state=present"
   with_items:
     - "postgres-{{ postgres_version | default('9.3') }}"

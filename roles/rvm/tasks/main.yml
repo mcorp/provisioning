@@ -1,6 +1,9 @@
 ---
   - name: Install RVM and latest ruby
-    shell: "\\curl -sSL https://get.rvm.io | sudo bash -s stable --ruby"
+    shell: "\\curl -sSL https://get.rvm.io | sudo bash"
 
   - name: "Add {{ ansible_ssh_user }} to RVM group"
     user: "name={{ ansible_ssh_user }} groups=rvm append=yes"
+
+  - name: "Install Ruby Head"
+    shell: "source /etc/profile.d/rvm.sh; rvm install {{ ruby_version | default('2.1.2') }} executable=/bin/bash"

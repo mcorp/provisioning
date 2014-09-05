@@ -1,6 +1,6 @@
 ---
 - name: Install common
-  hosts: vps
+  hosts: vyper
   sudo: yes
 
   roles:

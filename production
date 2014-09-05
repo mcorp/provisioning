@@ -1,4 +1,7 @@
 # file: production
 
 [vps]
-vps.marcocarvalho.com ansible_ssh_user=root
+vps.marcocarvalho.com 
+
+[vyper]
+167.88.34.231 ansible_ssh_user=root

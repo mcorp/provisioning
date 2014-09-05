@@ -1,0 +1,7 @@
+---
+- name: "Install NodeJS, ImageMagick, libpq-dev"
+  apt: "pkg={{ item }} state=present"
+  with_items:
+    - nodejs
+    - imagemagick
+    - libpq-dev

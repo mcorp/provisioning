@@ -4,7 +4,8 @@
   sudo: yes
 
   roles:
-    - common
-    - postgres
-    - rails-dependencies
-    - rvm
+    #- common
+    #- postgres
+    #- rails-dependencies
+    #- rvm
+    - nginx

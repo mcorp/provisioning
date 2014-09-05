@@ -1,0 +1,43 @@
+upstream {{ app_name | mandatory }} {
+  server unix:{{ unicorn_socket_file }} fail_timeout=60;
+}
+
+server {
+  server_name {{ nginx_server_name }};
+
+  listen {{ nginx_port | default(80) }};
+
+  if ($host != $server_name) {
+     rewrite ^ $scheme://$server_name$uri permanent;
+  }
+  rewrite ^/sistema.*?$ $scheme://$server_name/ permanent;
+
+  access_log {{ nginx_log_dir | mandatory }}/access.log;
+  error_log  {{ nginx_log_dir | mandatory }}/error.log;
+
+  root {{ app_root | mandatory }};
+
+  try_files $uri/index.html $uri.html $uri @app;
+
+  client_max_body_size 5M;
+
+  if (-f /tmp/nginx-in-maintenance) {
+    return 503;
+  }
+
+  error_page 503 @maintenance;
+
+  location @maintenance {
+    if ($uri !~ ^/assets/) {
+      rewrite ^(.*)$ /503.html break;
+    }
+  }
+
+  location @app {
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_redirect off;
+    proxy_pass http://{{ app_name | mandatory }};
+  }
+}

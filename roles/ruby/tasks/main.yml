@@ -12,3 +12,6 @@
     - ./configure
     - make
     - sudo make install
+
+- name: "Install Bundler"
+  command: "gem install bundler"

@@ -7,3 +7,6 @@
 
   - name: "Install Ruby Head"
     shell: "source /etc/profile.d/rvm.sh; rvm install {{ ruby_version | default('2.1.2') }} executable=/bin/bash"
+
+  - name: "Install Bundler"
+    shell: "source /etc/profile.d/rvm.sh; gem install bundler executable=/bin/bash"

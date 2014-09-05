@@ -2,6 +2,6 @@
 - name: "Install Postgres"
   apt: "pkg={{ item }} state=present"
   with_items:
-    - "postgres-{{ postgres_version | default('9.3') }}"
+    - "postgresql-{{ postgres_version | default('9.3') }}"
     - "postgresql-contrib-{{ postgres_version | default('9.3') }}"
     - "postgresql-client-{{ postgres_version | default('9.3') }}"

@@ -4,4 +4,4 @@
 vps.marcocarvalho.com 
 
 [vyper]
-167.88.34.231 ansible_ssh_user=root
+162.252.243.128 ansible_ssh_user=root

@@ -1,0 +1,6 @@
+---
+  - name: Install RVM and latest ruby
+    shell: "\\curl -sSL https://get.rvm.io | sudo bash -s stable --ruby"
+
+  - name: "Add {{ ansible_ssh_user }} to RVM group"
+    user: "name={{ ansible_ssh_user }} groups=rvm append=yes"

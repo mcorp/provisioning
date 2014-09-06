@@ -8,4 +8,13 @@
     #- postgres
     #- rails-dependencies
     #- rvm
-    - nginx
+    - nginx_unicorn
+  vars:
+    app_name: teste
+    nginx_server_name: "www.marcocarvalho.com marcocarvalho.com"
+    unicorn_socket_file: "/tmp/unicorn_{{app_name}}.sock"
+    app_root: "/mcorp/{{ app_name }}/current/public"
+    nginx_log_dir: "/mcorp/{{ app_name}}/shared/log"
+    # nginx_user: root  # default is root
+    # nginx_group: root # default is root
+    # nginx_dir: /etc/nginx # default value

@@ -1,0 +1,28 @@
+---
+- name: "Install Nginx"
+  apt: "name=nginx-full state=latest"
+
+- name: Nginx | Update the configurations for the sites inventory
+  template:
+    src: nginx.site.j2
+    dest: "{{ nginx_dir | default('/etc/nginx') }}/sites-available/{{app_name}}.conf"
+    owner: "{{ nginx_user | default('root') }}"
+    group: "{{ nginx_group | default('root') }}"
+    mode: 0644
+
+- name: Nginx | Create Directories
+  file:
+    path: "{{nginx_log_dir}}"
+    owner: "{{ nginx_user | default('root') }}"
+    group: "{{ nginx_group | default('root') }}"
+    mode: 0755
+    recurse: yes
+    state: directory
+
+- name: Nginx | Activate new config
+  file:
+    src: "{{ nginx_dir | default('/etc/nginx') }}/sites-available/{{app_name}}.conf"
+    dest: "{{ nginx_dir | default('/etc/nginx') }}/sites-enabled/{{app_name}}.conf"
+    owner: "{{ nginx_user | default('root') }}"
+    group: "{{ nginx_group | default('root') }}"
+    state: link

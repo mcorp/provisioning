@@ -27,3 +27,4 @@
     - bison
     - git
     - libffi-dev
+    - python-psycopg2

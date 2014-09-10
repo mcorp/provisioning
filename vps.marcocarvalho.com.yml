@@ -4,17 +4,21 @@
   sudo: yes
 
   roles:
-    #- common
-    #- postgres
+    - common
+    - unix_user
+    - postgres
     #- rails-dependencies
     #- rvm
-    - nginx_unicorn
+    #- nginx_unicorn
   vars:
     app_name: teste
     nginx_server_name: "www.marcocarvalho.com marcocarvalho.com"
     unicorn_socket_file: "/tmp/unicorn_{{app_name}}.sock"
     app_root: "/mcorp/{{ app_name }}/current/public"
     nginx_log_dir: "/mcorp/{{ app_name}}/shared/log"
+    unix_user: umteste
+    postgres_db_user: umteste
+    postgres_db: dbteste
     # nginx_user: root  # default is root
     # nginx_group: root # default is root
     # nginx_dir: /etc/nginx # default value

@@ -1,0 +1,21 @@
+---
+- name: Install common
+  hosts: angariador
+  sudo: yes
+
+  roles:
+    - common
+    - postgres
+    - rails-dependencies
+    - ruby
+    - git
+    - nginx_unicorn
+  vars:
+    app_name: angariador
+    nginx_server_name: "www.angariador.com.br angariador.com.br angariador.mcorp.ws"
+    unicorn_socket_file: "/tmp/unicorn_{{app_name}}.sock"
+    app_root: "/mcorp/{{ app_name }}/current/public"
+    nginx_log_dir: "/mcorp/{{ app_name }}/shared/log"
+    # nginx_user: root  # default is root
+    # nginx_group: root # default is root
+    # nginx_dir: /etc/nginx # default value

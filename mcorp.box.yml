@@ -1,0 +1,10 @@
+---
+- name: mcorp box
+  hosts: all
+  sudo: yes
+
+  roles:
+    - common
+    - git
+    - rvm
+    - rails-dependencies

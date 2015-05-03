@@ -1,0 +1,22 @@
+# Version: 1.0.1
+---
+- name: mcorp box
+  hosts: all
+  sudo: yes
+
+  roles:
+    - common
+    - git
+    - role: rvm_io.rvm1-ruby
+      tags: ruby
+      sudo: True
+      rvm1_rubies:
+        - ruby-head
+    - rails-dependencies
+    - change_host_name
+    - rvm_color_prompt
+    - postgres
+    - elasticsearch # will install oracle-java
+  # default values
+  #vars:
+  #  hostname: mcorp-box

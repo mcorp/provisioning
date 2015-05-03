@@ -30,3 +30,14 @@
     - python-psycopg2
     - nfs-common
     - portmap
+
+- name: create mcorp dir
+  sudo: True
+  shell: 'mkdir -p /mcorp'
+
+- name: copy box-reset script
+  sudo: True
+  template:
+    src: box-reset.j2
+    mode: "u=rwx,g=rx,o=rx"
+    dest: /mcorp/box-reset.sh

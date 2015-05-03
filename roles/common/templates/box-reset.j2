@@ -1,0 +1,79 @@
+#!/bin/bash
+
+cat <<EOF
+
+BOX RESET
+=========
+
+This script will cleal all user specific data in order to prepare the box
+to have a new version generated
+
+Removed items:
+  - All contents from ~/.ssh except by known_hosts, authorized_keys and config
+  - All user databases from postgres
+  - All history files
+  - All system gems
+  - All rvm rubies and gemsets
+
+Reinstalled items
+  - bundler
+
+EOF
+
+# remove all non-essential keys
+find ~/.ssh -type f           \
+  ! -name 'known_hosts'       \
+  ! -name 'authorized_keys'   \
+  ! -name 'config'  -print0 | \
+  xargs -0 rm -rf
+
+# remove all gems
+sudo rm -rf $(gem env gemdir)
+
+# remove all rvm rubies and gemsets
+if [[ $(which rvm) ]]; then
+  rvm list strings | \
+    xargs -I{} rvm remove {}
+  rvm cleanup all
+fi
+
+# remove some system settings
+sudo rm -rf /usr/share/doc \
+   /usr/src/vboxguest* \
+   /usr/src/virtualbox-ose-guest* \
+   /usr/share/locale/{af,am,ar,as,ast,az,bal,be,bg,bn,bn_IN,br,bs,byn,ca,cr,cs,csb,cy,da,de,de_AT,dz,el,en_AU,en_CA,eo,es,et,et_EE,eu,fa,fi,fo,fr,fur,ga,gez,gl,gu,haw,he,hi,hr,hu,hy,id,is,it,ja,ka,kk,km,kn,ko,kok,ku,ky,lg,lt,lv,mg,mi,mk,ml,mn,mr,ms,mt,nb,ne,nl,nn,no,nso,oc,or,pa,pl,ps,pt,pt_BR,qu,ro,ru,rw,si,sk,sl,so,sq,sr,sr*latin,sv,sw,ta,te,th,ti,tig,tk,tl,tr,tt,ur,urd,ve,vi,wa,wal,wo,xh,zh,zh_HK,zh_CN,zh_TW,zu}
+sudo find /var/cache -type f -exec rm -rf {} \;
+
+
+# dropping all user databases
+psql -ltA | \
+  cut -d '|' -f 1 | \
+  grep -Ev 'postgres|template' | \
+  xargs -I{} dropdb {}
+
+### Compress Image Size
+
+# Zero out the free space to save space in the final image
+echo ""
+echo "Compressing image (this may take... ugh... a lot)"
+sudo dd if=/dev/zero of=/EMPTY bs=1M
+sudo rm -rf /EMPTY
+
+# clear all histories
+find . -name '.*history' -print0 | \
+  xargs -0 rm -rf
+
+echo
+echo "Com o VMWare Workstation - http://va.mu/m4t1 - instalado,"
+echo "use os comandos abaixo (fora da VM e com ela 'halted') para"
+echo "realizar o 'shrink' do arquivo de disco:"
+echo
+echo '$ vmware-vdiskmanager -d ~/.vagrant.d/boxes/mcorp/0/virtualbox/box-disk2.vmdk # realizar o defrag'
+echo '$ vmware-vdiskmanager -k ~/.vagrant.d/boxes/mcorp/0/virtualbox/box-disk2.vmdk # realizar o shrink'
+echo
+echo "ALL CLEAR!!!"
+echo ""
+echo "To create a new box, on host run the following command:"
+echo ""
+echo "  vagrant package --output mcorp-v{BOX_NUMBER_HERE}.box"
+echo ""

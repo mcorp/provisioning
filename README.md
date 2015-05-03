@@ -22,6 +22,21 @@ cp provisioning/Vagrantfile.example Vagrantfile
 vi Vagrantfile
 ```
 
+Then add your box like you already do:
+
+```shell
+vagrant box add some_name ubuntu/trusty64
+vagrant box add your_custom_box http://path.to/your/box.box
+vagrant up yourboxname
+```
+
+Vagrant will automatic run provision when the box came up first time, but
+if you want to run again:
+
+```shell
+vagrant provision yourboxname
+```
+
 ## Roles avaliable
 
 [See roles directory](https://github.com/mcorp/provisioning/tree/master/roles)

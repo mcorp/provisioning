@@ -3,8 +3,14 @@
   hosts: all
   sudo: yes
 
+
   roles:
     - common
     - git
-    - rvm
+    - role: rvm_io.rvm1-ruby
+      tags: ruby
+      sudo: True
+      rvm1_rubies:
+        - 2.2.2
     - rails-dependencies
+    #- rvm

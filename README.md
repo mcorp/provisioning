@@ -65,3 +65,12 @@ Vagrant.configure('2') do |cfg|
 end
 ```
 [More examples](https://github.com/mcorp/provisioning/blob/master/Vagrantfile.example)
+
+## Repackage
+
+```shel
+cd /mcorp
+./box-reset.sh
+```
+
+And follow the instructions. [See box-reset.sh file](https://github.com/mcorp/provisioning/blob/master/roles/common/templates/box-reset.j2)

@@ -4,6 +4,7 @@
 
 - name: "Configure git"
   shell: "{{item}}"
+  sudo: no
   with_items:
     - git config --global color.ui true
     - git config --global core.editor vim

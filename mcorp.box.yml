@@ -11,6 +11,10 @@
       tags: ruby
       sudo: True
       rvm1_rubies:
-        - 2.2.2
+        - ruby-head
     - rails-dependencies
-    #- rvm
+    - change_host_name
+    - rvm_color_prompt
+  # default values
+  #vars:
+  #  hostname: mcorp-box

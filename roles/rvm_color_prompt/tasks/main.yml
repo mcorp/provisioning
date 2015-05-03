@@ -1,0 +1,7 @@
+---
+- name: Add RVM source function to .bashrc
+  sudo: false
+  lineinfile: dest=~/.bashrc line="source \"$rvm_path/contrib/ps1_functions\""
+- name: Add ps1_set to .bashrc
+  sudo: false
+  lineinfile: dest=~/.bashrc line=ps1_set

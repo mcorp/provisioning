@@ -6,6 +6,22 @@
     - "postgresql-contrib-{{ postgres_version | default('9.3') }}"
     - "postgresql-client-{{ postgres_version | default('9.3') }}"
 
-- postgresql_user: "name={{postgres_db_user}} role_attr_flags=CREATEDB,CREATEROLE,SUPERUSER state=present"
-- postgresql_db: "name={{ postgres_db | mandatory }}"
-- postgresql_privs: "db={{ postgres_db }} privs=ALL type=schema role={{postgres_db_user}}"
+- name: Set postgres user password to default
+  sudo: True
+  sudo_user: postgres
+  postgresql_user:
+    user: postgres
+    login_user: postgres
+    password: postgres
+
+- name: set PGHOST
+  sudo: no
+  lineinfile: dest=~/.bashrc line="export PGHOST=\"localhost\""
+
+- name: set PGPASSWORD
+  sudo: no
+  lineinfile: dest=~/.bashrc line="export PGPASSWORD=\"postgres\""
+
+- name: set PGUSER
+  sudo: no
+  lineinfile: dest=~/.bashrc line="export PGUSER=\"postgres\""

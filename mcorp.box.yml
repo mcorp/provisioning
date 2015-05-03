@@ -3,7 +3,6 @@
   hosts: all
   sudo: yes
 
-
   roles:
     - common
     - git
@@ -15,6 +14,9 @@
     - rails-dependencies
     - change_host_name
     - rvm_color_prompt
+    - postgres
+    # - oracle-java
+    # - elasticsearch # will install oracle-java
   # default values
   #vars:
   #  hostname: mcorp-box

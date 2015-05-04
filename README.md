@@ -2,18 +2,19 @@
 
 ## Dependencies
 
- * Vagrant
- * ansible
+ * [VirtualBox](https://www.virtualbox.org)
+ * [Vagrant](https://www.vagrantup.com)
+ * [Ansible](http://www.ansible.com/home)
 
 Run to install dependencies (ubuntu only):
 
-```shell
+```sh
 $ ./host-dependencies.sh
 ```
 
 ## Using
 
-```shell
+```sh
 export $BASE_PATH=~/projects
 mkdir -p $BASE_PATH
 cd $BASE_PATH
@@ -24,7 +25,7 @@ vi Vagrantfile
 
 Then add your box like you already do:
 
-```shell
+```sh
 vagrant box add some_name ubuntu/trusty64
 vagrant box add your_custom_box http://path.to/your/box.box
 vagrant up yourboxname
@@ -33,7 +34,7 @@ vagrant up yourboxname
 Vagrant will automatic run provision when the box came up first time, but
 if you want to run again:
 
-```shell
+```sh
 vagrant provision yourboxname
 ```
 
@@ -43,7 +44,7 @@ vagrant provision yourboxname
 
 ## Example of vagrant file
 
-```rubby
+```ruby
 Vagrant.configure('2') do |cfg|
   cfg.vm.synced_folder "/path/to/projects", "/vagrant", nfs: true
 
@@ -52,7 +53,7 @@ Vagrant.configure('2') do |cfg|
     config.vm.box = "ubuntu/trusty64"
     config.vm.network :forwarded_port, guest: 3000, host: 3000
     config.vm.network :forwarded_port, guest: 4000, host: 4000
-    config.vm.network :forwarded_port, guest: 5432, host: 5432 # Postgress
+    config.vm.network :forwarded_port, guest: 5432, host: 5432 # PostgreSQL
     config.ssh.forward_agent = true
 
 
@@ -68,7 +69,7 @@ end
 
 ## Repackage
 
-```shel
+```sh
 cd /mcorp
 ./box-reset.sh
 ```

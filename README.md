@@ -44,7 +44,7 @@ vagrant provision yourboxname
 
 ## Example of vagrant file
 
-```rubby
+```ruby
 Vagrant.configure('2') do |cfg|
   cfg.vm.synced_folder "/path/to/projects", "/vagrant", nfs: true
 

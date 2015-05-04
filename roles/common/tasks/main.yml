@@ -30,6 +30,8 @@
     - python-psycopg2
     - nfs-common
     - portmap
+    - s3cmd
+    - npm
 
 - name: create mcorp dir
   sudo: True

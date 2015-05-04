@@ -17,6 +17,11 @@
     - postgres
     # - oracle-java
     # - elasticsearch # will install oracle-java
+  tasks:
+    user:
+      name: vagrant
+      groups: rvm
+      append: yes
   # default values
   #vars:
   #  hostname: mcorp-box

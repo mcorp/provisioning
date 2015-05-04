@@ -8,13 +8,13 @@
 
 Run to install dependencies (ubuntu only):
 
-```shell
+```sh
 $ ./host-dependencies.sh
 ```
 
 ## Using
 
-```shell
+```sh
 export $BASE_PATH=~/projects
 mkdir -p $BASE_PATH
 cd $BASE_PATH
@@ -25,7 +25,7 @@ vi Vagrantfile
 
 Then add your box like you already do:
 
-```shell
+```sh
 vagrant box add some_name ubuntu/trusty64
 vagrant box add your_custom_box http://path.to/your/box.box
 vagrant up yourboxname
@@ -34,7 +34,7 @@ vagrant up yourboxname
 Vagrant will automatic run provision when the box came up first time, but
 if you want to run again:
 
-```shell
+```sh
 vagrant provision yourboxname
 ```
 
@@ -69,7 +69,7 @@ end
 
 ## Repackage
 
-```shel
+```sh
 cd /mcorp
 ./box-reset.sh
 ```

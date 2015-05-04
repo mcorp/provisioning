@@ -2,9 +2,9 @@
 
 ## Dependencies
 
- * VirtualBox
- * Vagrant
- * ansible
+ * [VirtualBox](https://www.virtualbox.org)
+ * [Vagrant](https://www.vagrantup.com)
+ * [Ansible](http://www.ansible.com/home)
 
 Run to install dependencies (ubuntu only):
 

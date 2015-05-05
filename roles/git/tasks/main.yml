@@ -7,3 +7,15 @@
   template:
     src: gitconfig.j2
     dest: ~/.gitconfig
+
+- name: add s alias for git
+  sudo: no
+  lineinfile: dest=~/.bash_aliases line="alias s=\"git s\""
+
+- name: add k alias for git
+  sudo: no
+  lineinfile: dest=~/.bash_aliases line="alias k=\"git k\""
+
+- name: add l alias for git
+  sudo: no
+  lineinfile: dest=~/.bash_aliases line="alias l=\"git l\""

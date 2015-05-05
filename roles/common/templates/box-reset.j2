@@ -30,6 +30,9 @@ find ~/.ssh -type f           \
 # remove all gems
 sudo rm -rf $(gem env gemdir)
 
+# remove all history files
+sudo rm -rf .*-history .*_history
+
 # remove all rvm rubies and gemsets
 if [[ $(which rvm) ]]; then
   rvm list strings | \

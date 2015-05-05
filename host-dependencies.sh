@@ -1,5 +1,15 @@
 #!/bin/bash
 
+if [ $(uname -s) != "Linux" ]; then
+  echo "Sorry, this script is made for Linux systems only"
+  exit -1
+fi
+
+if [ -z $(which apt-get) ]; then
+  echo "This script requires apt-get package manager to be present"
+  exit -1
+fi
+
 sudo apt-get update
 sudo apt-get install aptitude -y
 

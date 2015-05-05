@@ -43,3 +43,7 @@
     src: box-reset.j2
     mode: "u=rwx,g=rx,o=rx"
     dest: /mcorp/box-reset.sh
+
+- name: using the dark background as default for vim
+  sudo: no
+  lineinfile: dest=~/.vimrc line="set background=dark"

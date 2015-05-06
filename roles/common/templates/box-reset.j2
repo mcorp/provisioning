@@ -30,9 +30,6 @@ find ~/.ssh -type f           \
 # remove all gems
 sudo rm -rf $(gem env gemdir)
 
-# remove all history files
-sudo rm -rf .*-history .*_history
-
 # remove all rvm rubies and gemsets
 if [[ $(which rvm) ]]; then
   rvm list strings | \
@@ -53,6 +50,9 @@ psql -ltA | \
   cut -d '|' -f 1 | \
   grep -Ev 'postgres|template' | \
   xargs -I{} dropdb {}
+
+# removing s3cmd config file with your AWS S3 credentials
+rm ~/.s3cfg
 
 ### Compress Image Size
 

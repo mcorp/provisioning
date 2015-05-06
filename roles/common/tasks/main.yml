@@ -46,4 +46,4 @@
 
 - name: using the dark background as default for vim
   sudo: no
-  lineinfile: dest=~/.vimrc line="set background=dark"
+  lineinfile: dest=~/.vimrc line="set background=dark" state=present create=yes

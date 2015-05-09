@@ -1,5 +1,39 @@
 ---
 
+- name: resolv.conf
+  sudo: True
+  lineinfile:
+    dest: /etc/resolvconf/resolv.conf.d/tail
+    line: "nameserver 8.8.8.8"
+    state: present
+    create: yes
+
+- name: resolv.conf
+  sudo: True
+  lineinfile:
+    dest: /etc/resolvconf/resolv.conf.d/tail
+    line: "nameserver 8.8.4.4"
+    state: present
+    create: yes
+
+- name: resolv.conf
+  sudo: True
+  lineinfile:
+    dest: /etc/resolv.conf
+    line: "nameserver 8.8.8.8"
+    insertbefore: "^nameserver"
+    state: present
+    create: yes
+
+- name: resolv.conf
+  sudo: True
+  lineinfile:
+    dest: /etc/resolv.conf
+    line: "nameserver 8.8.4.4"
+    insertbefore: "^nameserver"
+    state: present
+    create: yes
+
 - name: Update all packages
   apt: update_cache=yes upgrade=dist
 

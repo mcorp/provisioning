@@ -1,4 +1,12 @@
 ---
+- name: remove hellobits
+  sudo: True
+  shell: 'rm -f /etc/apt/sources.list.d/hellobits.list'
+
+- name: remove hellobits
+  sudo: True
+  shell: 'rm -f /etc/apt/sources.list.d/hellobits.list.distUpgrade'
+
 - name: add heroku toolbelt repository
   apt_repository:
     repo: 'deb http://toolbelt.heroku.com/ubuntu ./'
@@ -9,8 +17,13 @@
     url: https://toolbelt.heroku.com/apt/release.key
     state: present
 
+- name: remove conflicts package for toolbelt
+  sudo: yes
+  shell: apt-get -f -y purge libruby1.9.1 libruby2.0:amd64 ruby-2.1 ruby1.9.1 ruby2.0 rubygems-integration
+
 - name: Install heroku belt
   apt:
     pkg: heroku-toolbelt
+    update_cache: yes
     state: latest
     force: yes

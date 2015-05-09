@@ -54,5 +54,5 @@
 
 - name: Configure Locale
   locale_gen:
-    locale: pt_BR.UTF-8
+    name: pt_BR.UTF-8
     state: present

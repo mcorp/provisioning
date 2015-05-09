@@ -14,6 +14,7 @@
     - rails-dependencies
     - change_host_name
     - rvm_color_prompt
+    - heroku_toolbelt
     - postgres
     # - oracle-java
     # - elasticsearch # will install oracle-java

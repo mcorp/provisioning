@@ -1,0 +1,16 @@
+---
+- name: add heroku toolbelt repository
+  apt_repository:
+    repo: 'deb http://toolbelt.heroku.com/ubuntu ./'
+    state: present
+
+- name: add heroku toolbelt repository key
+  apt_key:
+    url: https://toolbelt.heroku.com/apt/release.key
+    state: present
+
+- name: Install heroku belt
+  apt:
+    pkg: heroku-toolbelt
+    state: latest
+    force: yes

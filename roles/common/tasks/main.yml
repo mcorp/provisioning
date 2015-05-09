@@ -32,6 +32,10 @@
     - portmap
     - s3cmd
     - npm
+    - language-pack-en
+    - language-pack-en-base
+    - language-pack-pt
+    - language-pack-pt-base
 
 - name: create mcorp dir
   sudo: True
@@ -47,3 +51,8 @@
 - name: using the dark background as default for vim
   sudo: no
   lineinfile: dest=~/.vimrc line="set background=dark" state=present create=yes
+
+- name: Configure Locale
+  locale_gen:
+    locale: pt_BR.UTF-8
+    state: present

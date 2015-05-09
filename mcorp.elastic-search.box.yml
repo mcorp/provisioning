@@ -1,4 +1,3 @@
-# Version: 1.0.1
 ---
 - name: mcorp box
   hosts: all
@@ -17,6 +16,8 @@
     - rvm_color_prompt
     - postgres
     - elasticsearch # will install oracle-java
-  # default values
-  #vars:
-  #  hostname: mcorp-box
+  vars:
+    # hostname: mcorp-box
+    rvm1_user: '{{ ansible_ssh_user }}'
+    rvm1_install_flags: '--auto-dotfiles --user-install'
+    rvm1_install_path: '/home/{{ ansible_ssh_user }}/.rvm'

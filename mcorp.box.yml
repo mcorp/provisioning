@@ -10,7 +10,7 @@
       tags: ruby
       sudo: True
       rvm1_rubies:
-        - ruby-head
+        - 'ruby-2.2.2'
     - rails-dependencies
     - change_host_name
     - rvm_commons

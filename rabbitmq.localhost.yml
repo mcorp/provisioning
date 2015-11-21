@@ -1,0 +1,7 @@
+---
+- name: Install RabbitMQ
+  hosts: localhost
+  sudo: yes
+
+  roles:
+    - rabbitmq

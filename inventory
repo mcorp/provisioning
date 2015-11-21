@@ -2,3 +2,6 @@
 
 [angariador]
 angariador.mcorp.ws ansible_ssh_user=root
+
+[localhost]
+localhost

@@ -1,6 +1,8 @@
 ---
 - name: "Install NodeJS, ImageMagick, libpq-dev, phantomjs"
   apt: "pkg={{ item }} state=present"
+  become: True
+  become_user: root
   with_items:
     - nodejs
     - imagemagick

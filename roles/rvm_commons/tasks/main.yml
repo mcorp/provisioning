@@ -1,10 +1,12 @@
 ---
 - name: Add RVM source function to .bashrc
-  sudo: false
+  become: True
+  become_user: root
   lineinfile: dest=~/.bashrc line="source \"$rvm_path/contrib/ps1_functions\""
 
 - name: Add ps1_set to .bashrc
-  sudo: false
+  become: True
+  become_user: root
   lineinfile: dest=~/.bashrc line=ps1_set
 
 - name: add vagrant user to rvm group

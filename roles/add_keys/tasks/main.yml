@@ -1,0 +1,13 @@
+---
+- name: Set authorized key marcocarvalho
+  authorized_key:
+    user: spadmin
+    state: present
+    key: https://github.com/marcocarvalho.keys
+    validate_certs: False
+- name: Set authorized key vyper
+  authorized_key:
+    user: spadmin
+    state: present
+    key: https://github.com/vyper.keys
+    validate_certs: False

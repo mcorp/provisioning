@@ -3,19 +3,19 @@
   apt: "name=git state=latest"
 
 - name: "Configure git"
-  sudo: no
+  become: False
   template:
     src: gitconfig.j2
     dest: ~/.gitconfig
 
 - name: add s alias for git
-  sudo: no
+  become: False
   lineinfile: dest=~/.bash_aliases line="alias s=\"git s\"" state=present create=yes
 
 - name: add k alias for git
-  sudo: no
+  become: False
   lineinfile: dest=~/.bash_aliases line="alias k=\"git k\"" state=present create=yes
 
 - name: add l alias for git
-  sudo: no
+  become: False
   lineinfile: dest=~/.bash_aliases line="alias l=\"git l\"" state=present create=yes

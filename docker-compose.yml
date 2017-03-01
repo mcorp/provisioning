@@ -1,0 +1,9 @@
+version: '2'
+services:
+  ansible:
+    build: .
+    command: /bin/sh
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/playbooks

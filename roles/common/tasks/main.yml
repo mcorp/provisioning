@@ -1,7 +1,8 @@
 ---
 
 - name: resolv.conf
-  sudo: True
+  become: True
+  become_user: root
   lineinfile:
     dest: /etc/resolvconf/resolv.conf.d/tail
     line: "nameserver 8.8.8.8"
@@ -9,7 +10,8 @@
     create: yes
 
 - name: resolv.conf
-  sudo: True
+  become: True
+  become_user: root
   lineinfile:
     dest: /etc/resolvconf/resolv.conf.d/tail
     line: "nameserver 8.8.4.4"
@@ -17,7 +19,8 @@
     create: yes
 
 - name: resolv.conf
-  sudo: True
+  become: True
+  become_user: root
   lineinfile:
     dest: /etc/resolv.conf
     line: "nameserver 8.8.8.8"
@@ -26,7 +29,8 @@
     create: yes
 
 - name: resolv.conf
-  sudo: True
+  become: True
+  become_user: root
   lineinfile:
     dest: /etc/resolv.conf
     line: "nameserver 8.8.4.4"
@@ -35,9 +39,13 @@
     create: yes
 
 - name: Update all packages
+  become: True
+  become_user: root
   apt: update_cache=yes upgrade=dist
 
 - name: Install common Ubuntu Packages
+  become: True
+  become_user: root
   apt: "pkg={{item}} state=latest force=yes"
   with_items:
     - build-essential
@@ -70,17 +78,6 @@
     - language-pack-en-base
     - language-pack-pt
     - language-pack-pt-base
-
-- name: create mcorp dir
-  sudo: True
-  shell: 'mkdir -p /mcorp'
-
-- name: copy box-reset script
-  sudo: True
-  template:
-    src: box-reset.j2
-    mode: "u=rwx,g=rx,o=rx"
-    dest: /mcorp/box-reset.sh
 
 - name: using the dark background as default for vim
   sudo: no

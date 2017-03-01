@@ -2,26 +2,26 @@
 - name: "Install Postgres"
   apt: "pkg={{ item }} state=present"
   with_items:
-    - "postgresql-{{ postgres_version | default('9.3') }}"
-    - "postgresql-contrib-{{ postgres_version | default('9.3') }}"
-    - "postgresql-client-{{ postgres_version | default('9.3') }}"
+    - "postgresql-{{ postgres_version | default('9.5') }}"
+    - "postgresql-contrib-{{ postgres_version | default('9.5') }}"
+    - "postgresql-client-{{ postgres_version | default('9.5') }}"
 
 - name: Set postgres user password to default
-  sudo: True
-  sudo_user: postgres
+  become: true
+  become_user: postgres
   postgresql_user:
     user: postgres
     login_user: postgres
-    password: postgres
+    password: "{{ postgres_password | default('postgres') }}"
 
 - name: set PGHOST
-  sudo: no
+  become: False
   lineinfile: dest=~/.bashrc line="export PGHOST=\"localhost\""
 
 - name: set PGPASSWORD
-  sudo: no
+  become: False
   lineinfile: dest=~/.bashrc line="export PGPASSWORD=\"postgres\""
 
 - name: set PGUSER
-  sudo: no
+  become: False
   lineinfile: dest=~/.bashrc line="export PGUSER=\"postgres\""

@@ -1,12 +1,12 @@
 ---
 - name: add key to elastic-search
   apt_key:
-    url: https://packages.elasticsearch.org/GPG-KEY-elasticsearch
-    state: present 
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
     id: D88E42B4
 - name: add repositorie
-  apt_repository: 
-    repo: "deb http://packages.elasticsearch.org/elasticsearch/{{ elasticsearch_version | default('1.5') }}/debian stable main"
+  apt_repository:
+    repo: "deb https://artifacts.elastic.co/packages/5.x/apt stable main"
     state: present
 - name: install elasticsearch
   apt:
